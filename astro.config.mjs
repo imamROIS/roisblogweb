@@ -38,6 +38,10 @@ export default defineConfig({
 					label: '1. Fondasi IT',
 					items: [{ autogenerate: { directory: '1-konsep-dasar-komputer' } }],
 				},
+				{
+					label: 'Sistem Operasi',
+					items: [{ autogenerate: { directory: 'operating-systems/' } }],
+				},
 				{ 
 					label: 'Tentang Saya', 
 					link: '/tentang/about' 
