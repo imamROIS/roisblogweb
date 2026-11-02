@@ -1,40 +1,440 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
-template: splash # Remove or comment out this line to display the site sidebar on this page.
+# --- FRONTMATTER ---
+# Judul dan deskripsi halaman beranda.
+title: Beranda
+description: Catatan, panduan, dan praktik seputar IT infrastructure, networking, dan keamanan.
+
+# "splash" menyembunyikan sidebar pada halaman ini.
+# Search, pemilih tema (theme switcher), dan header Starlight TETAP dikelola oleh layout utama Starlight.
+# JANGAN membuat search bar atau theme switcher manual di sini.
+template: splash
+
 hero:
-  tagline: Congrats on setting up a new Starlight project!
-  image:
-    file: ../../assets/houston.webp
+  # Label kecil di atas judul utama (eyebrow). Gaya monospace dari CSS global akan diterapkan.
+  eyebrow: "IT NOTES / FIELD GUIDE"
+  
+  # Gunakan judul yang singkat agar kuat secara visual. Ukuran font diatur via CSS.
+  title: "Memahami sistem. Membangun infrastruktur."
+  
+  tagline: "Dokumentasi praktis tentang jaringan, sistem, infrastruktur, dan keamanan IT. Ditulis dari proses belajar, praktik, dan masalah yang benar-benar ditemui."
+  
+  # Gambar hero sengaja tidak digunakan agar halaman ringan dan fokus pada tipografi (gaya Making Software).
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: "Jelajahi dokumentasi"
+      link: /learning-path/learning-path
       icon: right-arrow
-    - text: Read the Starlight docs
-      link: https://starlight.astro.build
-      icon: external
+    - text: "Tentang proyek ini"
+      link: "#tentang"
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, CardGrid, LinkButton } from '@astrojs/starlight/components';
 
-## Next steps
+{/* 
+  =============================================================================
+  BERANDA PORTOFOLIO / DOKUMENTASI (Gaya Monokrom)
+  =============================================================================
+  - Semua komponen navigasi utama (Search, Theme Switcher) tetap dari Starlight.
+  - Jangan menimpa komponen Header/ThemeSelect di file ini.
+  - Gaya monokrom (hitam-putih) dikendalikan via CSS di bagian bawah file ini
+    dan (opsional) di file CSS global untuk font monospace.
+  - Layout menggunakan garis pemisah (border) dan tipografi kontras, bukan gambar.
+  =============================================================================
+*/}
 
-<CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
-	</Card>
-	<Card title="Change page layout" icon="document">
-		Delete `template: splash` in `src/content/docs/index.mdx` to display a
-		sidebar on this page.
-	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
-	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
-	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
-	</Card>
-</CardGrid>
+{/* --- BAGIAN 1: STATUS BAR (Gaya "Field Guide") --- */}
+<section class="intro-line" aria-label="Ringkasan situs">
+  <span class="status-dot" aria-hidden="true"></span>
+  <span>CATATAN TEKNIS · TUTORIAL · LAB NOTES</span>
+  <span class="intro-line__right">DIBUAT UNTUK DIPRAKTIKKAN</span>
+</section>
+
+{/* --- BAGIAN 2: MANIFESTO (Tentang) --- */}
+{/* id="tentang" memungkinkan link anchor dari hero actions. */}
+<section class="manifesto" id="tentang">
+  <p class="section-kicker">01 / TENTANG DOKUMENTASI</p>
+  <h2>Bukan sekadar kumpulan tutorial.</h2>
+  <p class="manifesto__lead">
+    Ini adalah ruang dokumentasi untuk memahami cara kerja teknologi, mencatat konfigurasi,
+    dan menyusun solusi yang bisa diuji ulang.
+  </p>
+  <p>
+    Materi disusun dari konsep dasar menuju implementasi. Setiap panduan idealnya menjelaskan
+    tujuan, prasyarat, langkah kerja, cara verifikasi, dan hal yang perlu diperiksa ketika
+    hasilnya tidak sesuai harapan.
+  </p>
+</section>
+
+<hr class="mono-rule" />
+
+{/* --- BAGIAN 3: JALUR BELAJAR (CardGrid) --- */}
+<section class="learning-section" aria-labelledby="learning-heading">
+  <div class="section-heading">
+    <div>
+      <p class="section-kicker">02 / MULAI DI SINI</p>
+      <h2 id="learning-heading">Pilih jalur belajar.</h2>
+    </div>
+    <p class="section-note">Ikuti urutan untuk membangun fondasi, atau langsung buka topik yang kamu butuhkan.</p>
+  </div>
+
+  {/* 
+    CardGrid & Card adalah komponen resmi Starlight.
+    Kita hanya memodifikasi border dan background via CSS global (.sl-card) agar monokrom.
+  */}
+  <CardGrid stagger>
+    <Card title="Fondasi IT" icon="laptop">
+      Pahami komputer, perangkat keras, sistem operasi, dan cara kerja client-server sebelum masuk ke konfigurasi yang lebih jauh.
+      <a href="/1-konsep-dasar-komputer/dasarkomputer/">Mulai dari konsep dasar →</a>
+    </Card>
+    <Card title="Jaringan komputer" icon="network">
+      Pelajari TCP/IP, IPv4, subnetting, perangkat jaringan, switching, VLAN, routing, DHCP, dan DNS.
+      <a href="/networking/">Jelajahi jaringan →</a>
+    </Card>
+    <Card title="Infrastruktur & server" icon="server">
+      Catatan administrasi Windows dan Linux, virtualisasi, penyimpanan, backup, dan layanan infrastruktur.
+      <a href="/infrastructure/">Jelajahi infrastruktur →</a>
+    </Card>
+    <Card title="Keamanan & monitoring" icon="shield-check">
+      Dasar segmentasi, firewall, VPN, monitoring, log, IDS/IPS, SIEM, dan respons awal terhadap gangguan.
+      <a href="/security/">Jelajahi keamanan →</a>
+    </Card>
+  </CardGrid>
+</section>
+
+<hr class="mono-rule" />
+
+{/* --- BAGIAN 4: METODOLOGI (Grid Angka) --- */}
+<section class="method-section">
+  <p class="section-kicker">03 / CARA MATERI DISUSUN</p>
+  <h2>Konsep dahulu. Konfigurasi setelahnya.</h2>
+  <div class="method-grid">
+    <article class="method-item">
+      <span class="method-number">01</span>
+      <h3>Pahami masalah</h3>
+      <p>Kenali tujuan, istilah, topologi, dan prasyarat sebelum mengubah konfigurasi.</p>
+    </article>
+    <article class="method-item">
+      <span class="method-number">02</span>
+      <h3>Ikuti praktik</h3>
+      <p>Kerjakan langkah secara bertahap di lab atau lingkungan uji yang aman.</p>
+    </article>
+    <article class="method-item">
+      <span class="method-number">03</span>
+      <h3>Verifikasi hasil</h3>
+      <p>Gunakan perintah, log, atau pengujian untuk memastikan hasilnya benar.</p>
+    </article>
+    <article class="method-item">
+      <span class="method-number">04</span>
+      <h3>Catat temuan</h3>
+      <p>Dokumentasikan penyebab masalah, solusi, dan langkah pemulihan.</p>
+    </article>
+  </div>
+</section>
+
+<hr class="mono-rule" />
+
+{/* --- BAGIAN 5: CTA PETA BELAJAR --- */}
+<section class="start-section">
+  <div>
+    <p class="section-kicker">04 / PETA DOKUMENTASI</p>
+    <h2>Jangan tersesat di sidebar.</h2>
+    <p>Gunakan peta belajar untuk melihat urutan materi dari fondasi IT sampai infrastruktur dan keamanan.</p>
+  </div>
+  <div class="start-action">
+    <LinkButton href="/learning-path/" variant="primary" icon="right-arrow">
+      Buka peta belajar
+    </LinkButton>
+  </div>
+</section>
+
+{/* --- BAGIAN 6: FOOTNOTE STATUS --- */}
+<section class="footnote">
+  <span>DOCUMENTATION STATUS: GROWING</span>
+  <span>VERSI AWAL · MATERI AKAN BERTAMBAH</span>
+</section>
+
+{/* 
+  =============================================================================
+  CSS LOKAL (Khusus Halaman Ini)
+  =============================================================================
+  Catatan:
+  - Warna menggunakan token Starlight (--sl-color-*) agar tetap terbaca di light/dark mode.
+  - Untuk efek "Making Software" yang lebih kuat, disarankan menambahkan font monospace
+    (seperti 'Departure Mono' atau 'JetBrains Mono') ke file CSS global proyek.
+  - CSS ini TIDAK mengubah header, search bar, atau sidebar global.
+  =============================================================================
+*/}
+<style>{`
+  /* --- 1. Status Bar Atas --- */
+  .intro-line {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+    padding: 0.85rem 0;
+    border-top: 1px solid var(--sl-color-gray-5);
+    border-bottom: 1px solid var(--sl-color-gray-5);
+    color: var(--sl-color-gray-2);
+    font-size: 0.72rem;
+    font-weight: 650;
+    letter-spacing: 0.09em;
+    /* Gunakan font monospace untuk kesan teknis */
+    font-family: var(--sl-font-mono), monospace;
+  }
+
+  .status-dot {
+    width: 0.48rem;
+    height: 0.48rem;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: var(--sl-color-text);
+    /* Animasi pulse halus (opsional) */
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+  }
+
+  .intro-line__right {
+    margin-left: auto;
+    color: var(--sl-color-gray-3);
+  }
+
+  /* --- 2. Tipografi Umum (Gaya Editorial) --- */
+  .manifesto {
+    max-width: 54rem;
+    padding: clamp(2.5rem, 7vw, 5.5rem) 0;
+  }
+
+  .section-kicker {
+    margin: 0 0 1rem;
+    color: var(--sl-color-gray-3);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    font-family: var(--sl-font-mono), monospace;
+  }
+
+  .manifesto h2,
+  .section-heading h2,
+  .method-section h2,
+  .start-section h2 {
+    margin: 0;
+    color: var(--sl-color-text);
+    font-size: clamp(1.8rem, 4.5vw, 3rem);
+    font-weight: 650;
+    letter-spacing: -0.045em;
+    line-height: 1.12;
+  }
+
+  .manifesto__lead {
+    max-width: 45rem;
+    margin-top: 1.4rem;
+    color: var(--sl-color-text);
+    font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+    line-height: 1.55;
+  }
+
+  .manifesto > p:last-child {
+    max-width: 42rem;
+    color: var(--sl-color-gray-2);
+    line-height: 1.85;
+  }
+
+  /* --- 3. Garis Pemisah Monokrom --- */
+  .mono-rule {
+    margin: 0;
+    border: 0;
+    border-top: 1px solid var(--sl-color-gray-5);
+  }
+
+  /* --- 4. Layout Section --- */
+  .learning-section,
+  .method-section {
+    padding: clamp(2.5rem, 6vw, 4.5rem) 0;
+  }
+
+  .section-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(13rem, 22rem);
+    align-items: end;
+    gap: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .section-note {
+    margin: 0;
+    color: var(--sl-color-gray-3);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* --- 5. Modifikasi Card Starlight (Monokrom) --- */
+  /* 
+    :global() digunakan agar selector .sl-card (dari Starlight) bisa ditargetkan.
+    Ini hanya memperhalus tampilan, bukan mengganti fungsi.
+  */
+  :global(.sl-card) {
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.65rem;
+    box-shadow: none; /* Hilangkan shadow untuk kesan flat */
+    transition: border-color 160ms ease, transform 160ms ease;
+    /* Opsional: background sedikit abu-abu sangat muda di light mode */
+    background: var(--sl-color-gray-6); 
+  }
+
+  :global(.sl-card:hover) {
+    border-color: var(--sl-color-gray-2);
+    transform: translateY(-2px);
+  }
+
+  :global(.sl-card h3) {
+    letter-spacing: -0.025em;
+    font-weight: 650;
+  }
+
+  :global(.sl-card a) {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 650;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+    color: var(--sl-color-text-accent); /* Warna link Starlight */
+  }
+
+  /* --- 6. Grid Metodologi --- */
+  .method-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 2rem;
+    border-top: 1px solid var(--sl-color-gray-5);
+    border-bottom: 1px solid var(--sl-color-gray-5);
+  }
+
+  .method-item {
+    min-width: 0;
+    padding: 1.35rem 1.1rem 1.5rem 0;
+  }
+
+  .method-item + .method-item {
+    padding-left: 1.1rem;
+    border-left: 1px solid var(--sl-color-gray-5);
+  }
+
+  .method-number {
+    color: var(--sl-color-gray-3);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    font-family: var(--sl-font-mono), monospace;
+  }
+
+  .method-item h3 {
+    margin: 1.2rem 0 0.6rem;
+    font-size: 1rem;
+    font-weight: 650;
+  }
+
+  .method-item p {
+    margin: 0;
+    color: var(--sl-color-gray-3);
+    font-size: 0.9rem;
+    line-height: 1.75;
+  }
+
+  /* --- 7. CTA Section --- */
+  .start-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 2rem;
+    padding: clamp(2.5rem, 6vw, 4rem) 0;
+  }
+
+  .start-section p:not(.section-kicker) {
+    max-width: 38rem;
+    color: var(--sl-color-gray-2);
+    line-height: 1.8;
+  }
+
+  .start-action {
+    white-space: nowrap;
+  }
+
+  /* --- 8. Footnote --- */
+  .footnote {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1rem 0 0;
+    border-top: 1px solid var(--sl-color-gray-5);
+    color: var(--sl-color-gray-3);
+    font-size: 0.68rem;
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    font-family: var(--sl-font-mono), monospace;
+  }
+
+  /* --- 9. Responsif --- */
+  @media (max-width: 720px) {
+    .intro-line__right {
+      width: 100%;
+      margin-left: 1.1rem;
+    }
+
+    .section-heading,
+    .start-section {
+      grid-template-columns: 1fr;
+    }
+
+    .method-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .method-item:nth-child(3) {
+      padding-left: 0;
+      border-left: 0;
+      border-top: 1px solid var(--sl-color-gray-5);
+    }
+
+    .method-item:nth-child(4) {
+      border-top: 1px solid var(--sl-color-gray-5);
+    }
+  }
+
+  @media (max-width: 420px) {
+    .method-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .method-item,
+    .method-item + .method-item,
+    .method-item:nth-child(3) {
+      padding: 1.2rem 0;
+      border-left: 0;
+      border-top: 1px solid var(--sl-color-gray-5);
+    }
+
+    .method-item:first-child {
+      border-top: 0;
+    }
+  }
+
+  /* --- 10. Aksesibilitas (Reduced Motion) --- */
+  @media (prefers-reduced-motion: reduce) {
+    :global(.sl-card) {
+      transition: none;
+    }
+    :global(.sl-card:hover) {
+      transform: none;
+    }
+    .status-dot {
+      animation: none;
+    }
+  }
+`}</style>
